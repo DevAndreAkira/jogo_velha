@@ -9,8 +9,10 @@ let arrayGraphics = [];
 let size = 100;
 let qnt = Array(9);
 
+// Troca a vez de um jogador para outro
 let swapS = true;
 
+// Combinações possível para ganhar o jogo
 const combinacoes = [
     [0, 1, 2],
     [3, 4, 5],
@@ -22,7 +24,7 @@ const combinacoes = [
     [2, 4, 6]
 ];
 
-// Function Rectangle
+// Function Rectangle - Posicionamento dos cards
 for (i = 0; i < qnt.length; i++) {
     const graphics1 = new PIXI.Graphics();
     graphics1.beginFill(0x8D8C8C);
@@ -50,7 +52,7 @@ for (i = 0; i < qnt.length; i++) {
 
     graphics1.name = i;
 
-    // Ao clicar
+    // Ao clicar...
     graphics1.on('pointerdown', () => {
         // console.log(graphics1.name)
         marcar(graphics1);
@@ -58,8 +60,13 @@ for (i = 0; i < qnt.length; i++) {
 }
 
 function marcar(graphics) {
+    // Troca de cores/simbolos
     graphics.tint = swapS ? '0x00ff00' : '0xff0000';
+
+    // Desativa click
     graphics.interactive = false;
+
+    // Pega o Array qnt e preenche com 'xis' e 'bola' nos devidos posicionamentos
     qnt[graphics.name] = swapS ? 'xis' : 'bola'
 
     let resultado = conferir("xis") || conferir("bola");
@@ -71,6 +78,7 @@ function marcar(graphics) {
         }, 1000);
     }
 
+    // Intercala a vez
     swapS = !swapS;
 }
 
@@ -84,10 +92,13 @@ function conferir(jogador) {
         }
     }, []);
 
-    console.log(jogadas.length);
+    console.log(jogadas);
 
+    // Itera o Array 'combinacoes' e passa por cada elemento
     for (combinacao of combinacoes) {
+        // Every - Passa por todos os elementos para cumprir a condicional - boolean
         let ganhou = combinacao.every(elemento => {
+            // Includes - Verifica se o elemento contém no Array - boolean
             return jogadas.includes(elemento);
         })
 
