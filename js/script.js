@@ -105,10 +105,11 @@ function conferir(jogador) {
         if (ganhou) {
             return {
                 combinacao,
-                mensagem: `O jogador ${jogador} ganhou!`
+                mensagem: `O jogador ${jogador} ganhou!`,
             }
         }
-        if (jogadas.length >= 5) {
+
+        if (!qnt.includes(undefined) && jogadas.length === 4) {
             return {
                 mensagem: `Empate!`
             }
