@@ -3,14 +3,14 @@
   "name": "Jogo da véia",
   "icons": [
     {
-      "src": "/favicons/192.png",
+      "src": "img/favicons/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/favicons/512.png",
-      "sizes": "512x512",
+      "src": "img/favicons/android-chrome-192x192.png",
+      "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     }

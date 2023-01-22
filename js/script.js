@@ -10,20 +10,19 @@ sound.play();
 const cursor = PIXI.sound.Sound.from('./sound/Cursor1.ogg');
 cursor.volume = 0.05;
 
+let player1 = 0;
+let player2 = 0
+let swapS = true;
+
 function startGame() {
 
     const containerGame = new PIXI.Container();
     app.stage.addChild(containerGame);
 
-    // const markX1 = PIXI.Texture.from('./img/x.png');
-    // const markX2 = PIXI.Sprite.from(markX1);
-    // const markBola = PIXI.Sprite.from('/img/bola.png');
-
     let arrayGraphics = [];
     let size = 100;
     let qnt = Array(9);
     let tampao = Array(16);
-    let swapS = true;
 
     const combinacoes = [
         [0, 1, 2],
@@ -87,6 +86,40 @@ function startGame() {
         containerGame.addChild(graphics2);
     }
 
+    const squad1 = new PIXI.Graphics();
+    squad1.beginFill(0x00ff00);
+    squad1.drawRect(
+        (app.screen.width / 2) - 100,
+        (app.screen.height / 2) + 175,
+        50,
+        50
+    )
+    squad1.endFill();
+    containerGame.addChild(squad1);
+
+    const basicText1 = new PIXI.Text(`${player1}`);
+    basicText1.x = (app.screen.width / 2) - 75;
+    basicText1.y = (app.screen.height / 2 + 200);
+    basicText1.anchor.set(0.5);
+    containerGame.addChild(basicText1);
+
+    const squad2 = new PIXI.Graphics();
+    squad2.beginFill(0xff0000);
+    squad2.drawRect(
+        (app.screen.width / 2) + 50,
+        (app.screen.height / 2) + 175,
+        50,
+        50
+    )
+    squad2.endFill();
+    containerGame.addChild(squad2);
+
+    const basicText2 = new PIXI.Text(`${player2}`);
+    basicText2.x = (app.screen.width / 2) + 75;
+    basicText2.y = (app.screen.height / 2 + 200);
+    basicText2.anchor.set(0.5);
+    containerGame.addChild(basicText2);
+
     const basicText = new PIXI.Text(`Vez do ${swapS === true ? 'verde' : 'vermelho'}`);
     basicText.x = (app.screen.width / 2);
     basicText.y = (app.screen.height / 2 - 200);
@@ -134,6 +167,7 @@ function startGame() {
             })
 
             if (ganhou) {
+                jogador === "verde" ? (player1 = player1 + 1) : (player2 = player2 + 1)
                 return {
                     combinacao,
                     mensagem: `O jogador ${jogador} ganhou!`,
