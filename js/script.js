@@ -52,19 +52,19 @@ for (i = 0; i < qnt.length; i++) {
 
     // Ao clicar
     graphics1.on('pointerdown', () => {
-        console.log(graphics1.name)
+        // console.log(graphics1.name)
         marcar(graphics1);
     });
 }
 
-function marcar(graphics){
+function marcar(graphics) {
     graphics.tint = swapS ? '0x00ff00' : '0xff0000';
     graphics.interactive = false;
     qnt[graphics.name] = swapS ? 'xis' : 'bola'
 
     let resultado = conferir("xis") || conferir("bola");
 
-    if(resultado){
+    if (resultado) {
         alert(resultado.mensagem);
         setTimeout(() => {
             window.location.reload();
@@ -74,25 +74,32 @@ function marcar(graphics){
     swapS = !swapS;
 }
 
-function conferir(jogador){
+function conferir(jogador) {
     let jogadas = qnt.reduce((arrayJogadas, elemento, indice) => {
-        if(elemento == jogador){
+        if (elemento == jogador) {
             return arrayJogadas.concat(indice);
         }
-        else{
+        else {
             return arrayJogadas;
         }
     }, []);
 
-    for(combinacao of combinacoes){
+    console.log(jogadas.length);
+
+    for (combinacao of combinacoes) {
         let ganhou = combinacao.every(elemento => {
             return jogadas.includes(elemento);
         })
 
-        if(ganhou){
+        if (ganhou) {
             return {
                 combinacao,
                 mensagem: `O jogador ${jogador} ganhou!`
+            }
+        }
+        if (jogadas.length >= 5) {
+            return {
+                mensagem: `Empate!`
             }
         }
     }
