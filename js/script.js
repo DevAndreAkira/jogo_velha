@@ -84,6 +84,12 @@ for (i = 0; i < tampao.length; i++) {
     containerGame.addChild(graphics2);
 }
 
+const basicText = new PIXI.Text(`Vez do ${swapS === true ? 'verde' : 'vermelho'}`);
+basicText.x = (app.screen.width / 2);
+basicText.y = (app.screen.height / 2 - 200);
+basicText.anchor.set(0.5, 0.5);
+containerGame.addChild(basicText);
+
 function marcar(graphics) {
     // Troca de cores/simbolos
     graphics.tint = swapS ? '0x00ff00' : '0xff0000';
@@ -93,19 +99,20 @@ function marcar(graphics) {
     graphics.interactive = false;
 
     // Pega o Array qnt e preenche com 'xis' e 'bola' nos devidos posicionamentos
-    qnt[graphics.name] = swapS ? 'xis' : 'bola'
+    qnt[graphics.name] = swapS ? 'verde' : 'vermelho'
 
-    let resultado = conferir("xis") || conferir("bola");
+    let resultado = conferir("verde") || conferir("vermelho");
 
     if (resultado) {
-        alert(resultado.mensagem);
+        basicText.text = resultado.mensagem;
         setTimeout(() => {
             window.location.reload();
-        }, 1000);
+        }, 500);
     }
 
     // Intercala a vez
     swapS = !swapS;
+    
 }
 
 function conferir(jogador) {
@@ -138,5 +145,10 @@ function conferir(jogador) {
                 mensagem: `Empate!`
             }
         }
+
+        if (qnt.includes(undefined)){
+            basicText.text = `Vez do ${swapS === false ? 'verde' : 'vermelho'}`;
+        }
     }
+
 }
