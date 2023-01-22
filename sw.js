@@ -1,4 +1,4 @@
-const CACHE_NAME = "version-1.1"
+const CACHE_NAME = "veia-1.1"
 const urlsToCache = [
     '/',
     '/index.html'

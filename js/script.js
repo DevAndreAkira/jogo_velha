@@ -5,9 +5,16 @@ const containerGame = new PIXI.Container();
 
 app.stage.addChild(containerGame);
 
+const markX1 = PIXI.Texture.from('./img/x.png');
+const markX2 = PIXI.Sprite.from(markX1);
+const markBola = PIXI.Sprite.from('/img/bola.png');
+// markX.anchor.set(0.5);
+markBola.anchor.set(0.5)
+
 let arrayGraphics = [];
 let size = 100;
 let qnt = Array(9);
+let tampao = Array(16);
 
 // Troca a vez de um jogador para outro
 let swapS = true;
@@ -24,23 +31,27 @@ const combinacoes = [
     [2, 4, 6]
 ];
 
+let altCardX = [-200, -100, 0, 100, 200, 200, 200, 200, 200, 100, 0, -100, -200, -200, -200, -200];
+let altCardY = [-200, -200, -200, -200, -200, -100, 0, 100, 200, 200, 200, 200, 200, 100, 0, -100];
+
 // Function Rectangle - Posicionamento dos cards
 for (i = 0; i < qnt.length; i++) {
     const graphics1 = new PIXI.Graphics();
     graphics1.beginFill(0x8D8C8C);
+    //  graphics1.beginTextureFill({texture: markX2.texture});
     graphics1.lineStyle(5, 0x1a1a1a, 1);
     graphics1.drawRect(
         (i === 0 || i === 3 || i === 6 ?
-            ((app.screen.width / 2) - (size / 2) - 100) :
+            ((app.screen.width / 2) - (size / 2) - size) :
             i === 1 || i === 4 || i === 7 ?
                 (app.screen.width / 2) - (size / 2) :
-                (app.screen.width / 2) - (size / 2) + 100),
+                (app.screen.width / 2) - (size / 2) + size),
 
         arrayGraphics.length >= 3 && arrayGraphics.length <= 5 ?
             ((app.screen.height / 2) - (size / 2)) :
             i >= 6 ?
-                ((app.screen.height / 2) - (size / 2) + 100) :
-                ((app.screen.height / 2) - (size / 2) - 100),
+                ((app.screen.height / 2) - (size / 2) + size) :
+                ((app.screen.height / 2) - (size / 2) - size),
         size,
         size
     );
@@ -54,14 +65,29 @@ for (i = 0; i < qnt.length; i++) {
 
     // Ao clicar...
     graphics1.on('pointerdown', () => {
-        // console.log(graphics1.name)
         marcar(graphics1);
     });
+}
+
+for (i = 0; i < tampao.length; i++) {
+    const graphics2 = new PIXI.Graphics();
+    graphics2.beginFill(0x8D8C8C);
+    //  graphics1.beginTextureFill({texture: markX2.texture});
+    graphics2.lineStyle(5, 0x8D8C8C, 1);
+    graphics2.drawRect(
+        ((app.screen.width / 2) - (size / 2) - altCardX[i]),
+        ((app.screen.height / 2) - (size / 2) - altCardY[i]),
+        size,
+        size
+    );
+    graphics2.endFill();
+    containerGame.addChild(graphics2);
 }
 
 function marcar(graphics) {
     // Troca de cores/simbolos
     graphics.tint = swapS ? '0x00ff00' : '0xff0000';
+    console.log(graphics);
 
     // Desativa click
     graphics.interactive = false;
@@ -91,8 +117,6 @@ function conferir(jogador) {
             return arrayJogadas;
         }
     }, []);
-
-    console.log(jogadas);
 
     // Itera o Array 'combinacoes' e passa por cada elemento
     for (combinacao of combinacoes) {
