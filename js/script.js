@@ -7,6 +7,15 @@ sound.volume = 0.05;
 sound.loop = true;
 sound.play();
 
+// const startText1 = new PIXI.Text(`Começar jogo`);
+// startText1.x = (app.screen.width / 2);
+// startText1.y = (app.screen.height / 2);
+// startText1.anchor.set(0.5);
+// startText1.interactive = true;
+// startText1.cursor = 'pointer';
+// startText1.on('pointerdown', startFunction);
+// app.stage.addChild(startText1);
+
 const cursor = PIXI.sound.Sound.from('./sound/Cursor1.ogg');
 cursor.volume = 0.05;
 
@@ -186,5 +195,9 @@ function startGame() {
         }
     }
 }
+
+// function startFunction() {
+//     startGame();
+// }
 
 startGame();
