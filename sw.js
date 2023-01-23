@@ -1,7 +1,6 @@
 const CACHE_NAME = "veia-1.1"
 const urlsToCache = [
-    '/',
-    '/index.html'
+    'https://devandreakira.github.io/jogo_velha/'
 ]
 
 this.addEventListener('install', (event) => {
