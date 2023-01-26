@@ -16,6 +16,9 @@ sound.play();
 // startText1.on('pointerdown', startFunction);
 // app.stage.addChild(startText1);
 
+const sprt1 = PIXI.Sprite.from("./img/x.png");
+const sprt2 = PIXI.Sprite.from("./img/bola.png");
+
 const cursor = PIXI.sound.Sound.from('./sound/Cursor1.ogg');
 cursor.volume = 0.05;
 
@@ -50,6 +53,7 @@ function startGame() {
     // Function Rectangle - Posicionamento dos cards
     for (i = 0; i < qnt.length; i++) {
         const graphics1 = new PIXI.Graphics();
+        // graphics1.beginTextureFill({ texture: sprt1.texture});
         graphics1.beginFill(0x8D8C8C);
         graphics1.lineStyle(5, 0x1a1a1a, 1);
         graphics1.drawRect(
