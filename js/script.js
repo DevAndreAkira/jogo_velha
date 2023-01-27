@@ -57,7 +57,7 @@ function startGame() {
         graphics1.beginFill(0x8D8C8C);
         graphics1.lineStyle(5, 0x1a1a1a, 1);
         graphics1.drawRect(
-            (i === 0 || i === 3 || i === 6 ?
+            (i % 3 === 0 ?
                 ((app.screen.width / 2) - (size / 2) - size) :
                 i === 1 || i === 4 || i === 7 ?
                     (app.screen.width / 2) - (size / 2) :
