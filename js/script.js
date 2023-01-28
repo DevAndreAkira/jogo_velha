@@ -381,6 +381,7 @@ function startGame() {
     iconBack.interactive = true;
     iconBack.cursor = 'pointer';
     iconBack.on('pointerdown', () => {
+        cursor.play();
         containerGame.destroy({children: true, texture: true, baseTexture: true});
         player1 = 0;
         player2 = 0;
