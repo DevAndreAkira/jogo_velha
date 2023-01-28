@@ -1,3 +1,5 @@
+PIXI.settings.RESOLUTION = 1;
+
 const app = new PIXI.Application({
     backgroundAlpha: '0'
 });
@@ -12,8 +14,8 @@ sound.volume = 0.05;
 sound.loop = true;
 sound.play();
 
-const startText1 = new PIXI.Text(`1P`,{
-    fontSize: 50
+const startText1 = new PIXI.Text(`1P`, {
+    fontSize: 40
 });
 startText1.x = (app.screen.width / 2);
 startText1.y = (app.screen.height / 2 - 50);
@@ -24,7 +26,7 @@ startText1.on('pointerdown', startFunction);
 app.stage.addChild(startText1);
 
 const startText2 = new PIXI.Text(`2P`, {
-    fontSize: 50
+    fontSize: 40
 });
 startText2.x = (app.screen.width / 2);
 startText2.y = (app.screen.height / 2 + 50);
@@ -173,7 +175,12 @@ function startGame() {
         (app.screen.height / 2) + 175,
         50,
         50
-    )
+    );
+    squad2.interactive = true;
+    squad2.cursor = 'pointer';
+    squad2.on('pointerdown', () => {
+        squad2.tint = '0xffffff';
+    })
     squad2.endFill();
     containerGame.addChild(squad2);
 
