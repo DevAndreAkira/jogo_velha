@@ -27,6 +27,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            height: 100vh;
         }
 
         canvas {
@@ -41,7 +42,7 @@
             if ("serviceWorker" in navigator) {
                 try {
                     const registration = await navigator.serviceWorker.register("sw.js", {
-                        scope: "/",
+                        scope: "/jogo_velha",
                     });
                     if (registration.installing) {
                         console.log("Service worker installing");

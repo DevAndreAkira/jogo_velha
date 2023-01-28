@@ -1,5 +1,10 @@
-const app = new PIXI.Application({ backgroundAlpha: '0' });
+const app = new PIXI.Application({
+    backgroundAlpha: '0'
+});
 document.body.appendChild(app.view);
+
+let ganhou;
+let modalidade;
 
 // ? SOUND EFFECT
 const sound = PIXI.sound.Sound.from('./sound/elevador.mp3');
@@ -7,14 +12,27 @@ sound.volume = 0.05;
 sound.loop = true;
 sound.play();
 
-// const startText1 = new PIXI.Text(`Começar jogo`);
-// startText1.x = (app.screen.width / 2);
-// startText1.y = (app.screen.height / 2);
-// startText1.anchor.set(0.5);
-// startText1.interactive = true;
-// startText1.cursor = 'pointer';
-// startText1.on('pointerdown', startFunction);
-// app.stage.addChild(startText1);
+const startText1 = new PIXI.Text(`1P`,{
+    fontSize: 50
+});
+startText1.x = (app.screen.width / 2);
+startText1.y = (app.screen.height / 2 - 50);
+startText1.anchor.set(0.5);
+startText1.interactive = true;
+startText1.cursor = 'pointer';
+startText1.on('pointerdown', startFunction);
+app.stage.addChild(startText1);
+
+const startText2 = new PIXI.Text(`2P`, {
+    fontSize: 50
+});
+startText2.x = (app.screen.width / 2);
+startText2.y = (app.screen.height / 2 + 50);
+startText2.anchor.set(0.5);
+startText2.interactive = true;
+startText2.cursor = 'pointer';
+startText2.on('pointerdown', startFunction2);
+app.stage.addChild(startText2);
 
 const sprt1 = PIXI.Sprite.from("./img/x.png");
 const sprt2 = PIXI.Sprite.from("./img/bola.png");
@@ -80,9 +98,41 @@ function startGame() {
         graphics1.name = i;
 
         //! Ao clicar...
-        graphics1.on('pointerdown', () => {
-            marcar(graphics1);
-        });
+        if (modalidade === true) {
+            graphics1.on('pointerdown', () => {
+                marcar(graphics1);
+                // console.log(graphics.name);
+                setTimeout(() => {
+                    if (ganhou) {
+                        swapS = true;
+                    }
+                    else {
+                        marcar(marcacaoAleatorio());
+                    }
+                }, 100)
+            });
+        }
+        else {
+            graphics1.on('pointerdown', () => {
+                marcar(graphics1);
+            });
+        }
+    }
+
+    function marcacaoAleatorio() {
+        let numRandom = Math.floor(Math.random() * arrayGraphics.length);
+        if (qnt[numRandom] === undefined) {
+            return arrayGraphics[numRandom];
+        }
+        else {
+            console.log("Encontrando campo " + undefined);
+            if (!qnt.includes(undefined)) {
+                return '';
+            }
+            else {
+                return marcacaoAleatorio();
+            }
+        }
     }
 
     for (i = 0; i < tampao.length; i++) {
@@ -140,10 +190,12 @@ function startGame() {
     containerGame.addChild(basicText);
 
     function marcar(graphics) {
+        // console.log(graphics);
+        // console.log(graphics.name);
         cursor.play();
         graphics.tint = swapS ? '0x00ff00' : '0xff0000';
         graphics.interactive = false;
-        qnt[graphics.name] = swapS ? 'verde' : 'vermelho'
+        qnt[graphics.name] = swapS ? 'verde' : 'vermelho';
 
         let resultado = conferir("verde") || conferir("vermelho");
 
@@ -157,7 +209,6 @@ function startGame() {
                 startGame();
             }, 1500);
         }
-
         swapS = !swapS;
     }
 
@@ -174,13 +225,14 @@ function startGame() {
         // Itera o Array 'combinacoes' e passa por cada elemento
         for (combinacao of combinacoes) {
             // Every - Passa por todos os elementos para cumprir a condicional - boolean
-            let ganhou = combinacao.every(elemento => {
+            ganhou = combinacao.every(elemento => {
                 // Includes - Verifica se o elemento contém no Array - boolean
                 return jogadas.includes(elemento);
             })
 
             if (ganhou) {
-                jogador === "verde" ? (player1 = player1 + 1) : (player2 = player2 + 1)
+                console.log("Teste");
+                jogador === "verde" ? (player1 = player1 + 1) : (player2 = player2 + 1);
                 return {
                     combinacao,
                     mensagem: `O jogador ${jogador} ganhou!`,
@@ -200,8 +252,14 @@ function startGame() {
     }
 }
 
-// function startFunction() {
-//     startGame();
-// }
+function startFunction() {
+    modalidade = true;
+    startGame();
+}
 
-startGame();
+function startFunction2() {
+    modalidade = false;
+    startGame();
+}
+
+// startGame();
