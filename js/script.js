@@ -375,6 +375,7 @@ function startGame() {
         align: 'center',
         fontSize: 30
     });
+    iconBack.tint = "0x000000";
     iconBack.x = (window.innerWidth > 767 ? (app.screen.width / 2 + 225) : (app.screen.width / 2 + 120));
     iconBack.y = (app.screen.height / 2 - 225);
     iconBack.anchor.set(0.5);
