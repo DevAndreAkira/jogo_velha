@@ -111,7 +111,7 @@ const iconSound = new PIXI.Text(`🔊`, {
     align: 'center',
     fontSize: 30
 });
-iconSound.tint = '0x000000';
+// iconSound.tint = '0x000000';
 iconSound.x = (app.screen.width / 2);
 iconSound.y = (app.screen.height / 2 - 275);
 iconSound.anchor.set(0.5);
@@ -190,7 +190,6 @@ function startGame() {
                 // console.log(graphics.name);
                 setTimeout(() => {
                     if (ganhou) {
-                        party.play();
                         swapS = true;
                     }
                     else {
@@ -351,6 +350,7 @@ function startGame() {
             })
 
             if (ganhou) {
+                party.play();
                 console.log("Ganhou!");
                 jogador === "verde" ? (player1 = player1 + 1) : (player2 = player2 + 1);
                 return {
@@ -375,7 +375,7 @@ function startGame() {
         align: 'center',
         fontSize: 30
     });
-    iconBack.tint = "0x000000";
+    // iconBack.tint = "0x000000";
     iconBack.x = (window.innerWidth > 767 ? (app.screen.width / 2 + 225) : (app.screen.width / 2 + 120));
     iconBack.y = (app.screen.height / 2 - 225);
     iconBack.anchor.set(0.5);
