@@ -9,7 +9,7 @@ app.renderer.resize(window.innerWidth, window.innerHeight);
 
 //* BACKGROUND
 
-const texture = PIXI.Texture.from('https://pixijs.io/examples/examples/assets/p2.jpeg');
+const texture = PIXI.Texture.from('./img/p2.jpeg');
 
 const tilingSprite = new PIXI.TilingSprite(
     texture,
@@ -32,8 +32,8 @@ let ganhou;
 let modalidade;
 
 // ? SOUND EFFECT
-const sound = PIXI.sound.Sound.from('./sound/fusca.mp3');
-sound.volume = 0.1;
+const sound = PIXI.sound.Sound.from('./sound/funky.mp3');
+sound.volume = 0.05;
 sound.loop = true;
 sound.play();
 
@@ -392,12 +392,14 @@ function startGame() {
 
 function startFunction() {
     modalidade = true;
+    swapS = true;
     decision.play();
     startGame();
 }
 
 function startFunction2() {
     modalidade = false;
+    swapS = true;
     decision.play();
     startGame();
 }
