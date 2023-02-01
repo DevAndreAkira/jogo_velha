@@ -28,9 +28,6 @@ app.ticker.add(() => {
 
 //* BACKGROUND
 
-let ganhou;
-let modalidade;
-
 // ? SOUND EFFECT
 const sound = PIXI.sound.Sound.from('./sound/funky.mp3');
 sound.volume = 0.05;
@@ -43,16 +40,22 @@ decision.volume = 0.1;
 const party = PIXI.sound.Sound.from('./sound/party.mp3');
 party.volume = 0.1;
 
+let objChars = [
+    '👵',
+    '👴🏽',
+    '👵🏾',
+    '🧓🏻',
+    '🧑'
+]
+
+let ganhou;
+let modalidade;
+
 const startText1 = new PIXI.Text(`1P`, {
     fontSize: 40,
     fill: ['#ffffff', '#00ff99'], // gradient
     stroke: '#4a1850',
     strokeThickness: 5,
-    // dropShadow: true,
-    // dropShadowColor: '#000000',
-    // dropShadowBlur: 4,
-    // dropShadowAngle: Math.PI / 6,
-    // dropShadowDistance: 6,
     wordWrap: true,
     wordWrapWidth: 440,
     lineJoin: 'round',
@@ -70,11 +73,6 @@ const startText2 = new PIXI.Text(`2P`, {
     fill: ['#ffffff', '#00ff99'], // gradient
     stroke: '#4a1850',
     strokeThickness: 5,
-    // dropShadow: true,
-    // dropShadowColor: '#000000',
-    // dropShadowBlur: 4,
-    // dropShadowAngle: Math.PI / 6,
-    // dropShadowDistance: 6,
     wordWrap: true,
     wordWrapWidth: 440,
     lineJoin: 'round',
@@ -107,11 +105,28 @@ startText3.y = (app.screen.height / 2 - 175);
 startText3.anchor.set(0.5);
 app.stage.addChild(startText3);
 
+// * TORNEIO OCULTADO POR ENQUANTO
+// const startText4 = new PIXI.Text(`Torneio`, {
+//     fontSize: 40,
+//     fill: ['#ffffff', '#00ff99'], // gradient
+//     stroke: '#4a1850',
+//     strokeThickness: 5,
+//     wordWrap: true,
+//     wordWrapWidth: 440,
+//     lineJoin: 'round',
+// });
+// startText4.x = (app.screen.width / 2);
+// startText4.y = (app.screen.height / 2 + 75);
+// startText4.anchor.set(0.5);
+// startText4.interactive = true;
+// startText4.cursor = 'pointer';
+// startText4.on('pointerdown', startFunction3);
+// app.stage.addChild(startText4);
+
 const iconSound = new PIXI.Text(`🔊`, {
     align: 'center',
     fontSize: 30
 });
-// iconSound.tint = '0x000000';
 iconSound.x = (app.screen.width / 2);
 iconSound.y = (app.screen.height / 2 - 275);
 iconSound.anchor.set(0.5);
@@ -309,8 +324,6 @@ function startGame() {
     containerGame.addChild(basicText);
 
     function marcar(graphics) {
-        // console.log(graphics);
-        // console.log(graphics.name);
         cursor.play();
         graphics.tint = swapS ? '0x00ff00' : '0xff0000';
         graphics.interactive = false;
@@ -371,21 +384,35 @@ function startGame() {
         }
     }
 
+
+    const graphicsBars = new PIXI.Graphics();
+    graphicsBars.beginFill(0x00ff99);
+    graphicsBars.lineStyle(5, 0x00ff99, 1);
+    graphicsBars.drawRect(
+        ((app.screen.width / 2) - (250)),
+        ((50)),
+        (size * 5),
+        20
+    );
+    graphicsBars.endFill();
+    containerGame.addChild(graphicsBars);
+
     const iconBack = new PIXI.Text(`🔙`, {
         align: 'center',
         fontSize: 30
     });
-    // iconBack.tint = "0x000000";
     iconBack.x = (window.innerWidth > 767 ? (app.screen.width / 2 + 225) : (app.screen.width / 2 + 120));
-    iconBack.y = (app.screen.height / 2 - 225);
+    iconBack.y = (app.screen.height / 2 - 210);
     iconBack.anchor.set(0.5);
     iconBack.interactive = true;
     iconBack.cursor = 'pointer';
     iconBack.on('pointerdown', () => {
         cursor.play();
-        containerGame.destroy({children: true, texture: true, baseTexture: true});
+        containerGame.destroy({ children: true, texture: true, baseTexture: true });
         player1 = 0;
         player2 = 0;
+        startText1.interactive = true;
+        startText2.interactive = true;
     });
     containerGame.addChild(iconBack);
 }
@@ -393,6 +420,8 @@ function startGame() {
 function startFunction() {
     modalidade = true;
     swapS = true;
+    startText1.interactive = false;
+    startText2.interactive = false;
     decision.play();
     startGame();
 }
@@ -400,8 +429,18 @@ function startFunction() {
 function startFunction2() {
     modalidade = false;
     swapS = true;
+    startText1.interactive = false;
+    startText2.interactive = false;
     decision.play();
     startGame();
+}
+
+function startFunction3() {
+    alert("Aqui");
+    // modalidade = false;
+    // swapS = true;
+    // decision.play();
+    // startGame();
 }
 
 function soundConfig() {
