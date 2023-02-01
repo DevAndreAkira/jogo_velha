@@ -9,7 +9,7 @@ app.renderer.resize(window.innerWidth, window.innerHeight);
 
 //* BACKGROUND
 
-const texture = PIXI.Texture.from('./img/p2.jpeg');
+const texture = PIXI.Texture.from('./img/myGrid.png');
 
 const tilingSprite = new PIXI.TilingSprite(
     texture,
@@ -53,7 +53,7 @@ let modalidade;
 
 const startText1 = new PIXI.Text(`1P`, {
     fontSize: 40,
-    fill: ['#ffffff', '#00ff99'], // gradient
+    fill: ['#c6daff', '#b842b3'], // gradient
     stroke: '#4a1850',
     strokeThickness: 5,
     wordWrap: true,
@@ -70,7 +70,7 @@ app.stage.addChild(startText1);
 
 const startText2 = new PIXI.Text(`2P`, {
     fontSize: 40,
-    fill: ['#ffffff', '#00ff99'], // gradient
+    fill: ['#c6daff', '#b842b3'], // gradient
     stroke: '#4a1850',
     strokeThickness: 5,
     wordWrap: true,
@@ -88,7 +88,7 @@ app.stage.addChild(startText2);
 const startText3 = new PIXI.Text(`Jogo da velha 👵🏽`, {
     align: 'center',
     fontSize: (window.innerWidth > 767 ? 54 : 36),
-    fill: ['#ffffff', '#00ff99'], // gradient
+    fill: ['#c6daff', '#b842b3'], // gradient
     stroke: '#4a1850',
     strokeThickness: 5,
     dropShadow: true,
@@ -108,7 +108,7 @@ app.stage.addChild(startText3);
 // * TORNEIO OCULTADO POR ENQUANTO
 // const startText4 = new PIXI.Text(`Torneio`, {
 //     fontSize: 40,
-//     fill: ['#ffffff', '#00ff99'], // gradient
+//     fill: ['#c6daff', '#b842b3'], // gradient
 //     stroke: '#4a1850',
 //     strokeThickness: 5,
 //     wordWrap: true,
@@ -173,7 +173,7 @@ function startGame() {
     for (i = 0; i < qnt.length; i++) {
         const graphics1 = new PIXI.Graphics();
         // graphics1.beginTextureFill({ texture: sprt1.texture});
-        graphics1.beginFill(0xf5f5f5);
+        graphics1.beginFill(0xc6daff);
         graphics1.lineStyle(5, 0x1a1a1a, 1);
         graphics1.drawRect(
             (i % 3 === 0 ?
@@ -238,8 +238,8 @@ function startGame() {
 
     for (i = 0; i < tampao.length; i++) {
         const graphics2 = new PIXI.Graphics();
-        graphics2.beginFill(0xf5f5f5);
-        graphics2.lineStyle(5, 0xf5f5f5, 1);
+        graphics2.beginFill(0xc6daff);
+        graphics2.lineStyle(5, 0xc6daff, 1);
         graphics2.drawRect(
             ((app.screen.width / 2) - (size / 2) - altCardX[i]),
             ((app.screen.height / 2) - (size / 2) - altCardY[i]),
@@ -263,7 +263,7 @@ function startGame() {
 
     const basicText1 = new PIXI.Text(`${player1}`, {
         fontSize: 30,
-        fill: ['#ffffff', '#00ff99'], // gradient
+        fill: ['#c6daff', '#b842b3'], // gradient
         stroke: '#4a1850',
         strokeThickness: 5,
         dropShadowBlur: 4,
@@ -291,7 +291,7 @@ function startGame() {
 
     const basicText2 = new PIXI.Text(`${player2}`, {
         fontSize: 30,
-        fill: ['#ffffff', '#00ff99'], // gradient
+        fill: ['#c6daff', '#b842b3'], // gradient
         stroke: '#4a1850',
         strokeThickness: 5,
         dropShadowBlur: 4,
@@ -308,7 +308,7 @@ function startGame() {
 
     const basicText = new PIXI.Text(`Vez do ${swapS === true ? 'verde' : 'vermelho'}`, {
         fontSize: 24,
-        fill: ['#ffffff', '#00ff99'], // gradient
+        fill: ['#c6daff', '#b842b3'], // gradient
         stroke: '#4a1850',
         strokeThickness: 5,
         dropShadowBlur: 4,
@@ -386,8 +386,8 @@ function startGame() {
 
 
     const graphicsBars = new PIXI.Graphics();
-    graphicsBars.beginFill(0x00ff99);
-    graphicsBars.lineStyle(5, 0x00ff99, 1);
+    graphicsBars.beginFill(0xb842b3);
+    graphicsBars.lineStyle(5, 0xb842b3, 1);
     graphicsBars.drawRect(
         ((app.screen.width / 2) - (250)),
         ((50)),
