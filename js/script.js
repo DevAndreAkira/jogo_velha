@@ -29,16 +29,19 @@ app.ticker.add(() => {
 //* BACKGROUND
 
 // ? SOUND EFFECT
-// const sound = PIXI.sound.Sound.from('./sound/funky.mp3');
-// sound.volume = 0.05;
-// sound.loop = true;
-// sound.play();
+const sound = PIXI.sound.Sound.from('./sound/funky.mp3');
+sound.volume = 0.05;
+sound.loop = true;
+sound.play();
 
-// const decision = PIXI.sound.Sound.from('./sound/Decision1.ogg');
-// decision.volume = 0.1;
+const decision = PIXI.sound.Sound.from('./sound/Decision1.ogg');
+decision.volume = 0.1;
 
-// const party = PIXI.sound.Sound.from('./sound/party.mp3');
-// party.volume = 0.1;
+const cursor = PIXI.sound.Sound.from('./sound/Cursor1.ogg');
+cursor.volume = 0.1;
+
+const party = PIXI.sound.Sound.from('./sound/party.mp3');
+party.volume = 0.1;
 
 let objChars = [
     '👵',
@@ -324,7 +327,7 @@ function startGame() {
     containerGame.addChild(basicText);
 
     function marcar(graphics) {
-        // cursor.play();
+        cursor.play();
         graphics.tint = swapS ? '0x00ff00' : '0xff0000';
         graphics.interactive = false;
         qnt[graphics.name] = swapS ? 'verde' : 'vermelho';
@@ -363,7 +366,7 @@ function startGame() {
             })
 
             if (ganhou) {
-                // party.play();
+                party.play();
                 console.log("Ganhou!");
                 jogador === "verde" ? (player1 = player1 + 1) : (player2 = player2 + 1);
                 return {
@@ -407,7 +410,7 @@ function startGame() {
     iconBack.interactive = true;
     iconBack.cursor = 'pointer';
     iconBack.on('pointerdown', () => {
-        // cursor.play();
+        cursor.play();
         containerGame.destroy({ children: true, texture: true, baseTexture: true });
         player1 = 0;
         player2 = 0;
@@ -422,7 +425,7 @@ function startFunction() {
     swapS = true;
     startText1.interactive = false;
     startText2.interactive = false;
-    // decision.play();
+    decision.play();
     startGame();
 }
 
@@ -431,26 +434,26 @@ function startFunction2() {
     swapS = true;
     startText1.interactive = false;
     startText2.interactive = false;
-    // decision.play();
+    decision.play();
     startGame();
 }
 
 function startFunction3() {
     alert("Aqui");
-    // modalidade = false;
-    // swapS = true;
-    // decision.play();
-    // startGame();
+    modalidade = false;
+    swapS = true;
+    decision.play();
+    startGame();
 }
 
-// function soundConfig() {
-//     cursor.play();
-//     if (sound.isPlaying) {
-//         sound.stop();
-//         iconSound.text = "🔈";
-//     }
-//     else {
-//         sound.play();
-//         iconSound.text = "🔊";
-//     }
-// }
+function soundConfig() {
+    cursor.play();
+    if (sound.isPlaying) {
+        sound.stop();
+        iconSound.text = "🔈";
+    }
+    else {
+        sound.play();
+        iconSound.text = "🔊";
+    }
+}
