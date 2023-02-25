@@ -1,6 +1,4 @@
-# Jogo da velha
+# Bug Swat
+Jogo simples inspirado numa coletânea de jogos disponível pela Revista CD-ROM edição especial (1995)
 
-Jogo da velha simples para passar o tempo no celular.
-## Reference
-
- - [CodigoRapido - Jogo da velha com javascript](https://www.youtube.com/watch?v=tPhaWYJ6PMc)
+<img src="img/ref2.jpg" width="250px" /> <img src="img/ref.jpg" />
