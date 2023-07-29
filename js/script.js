@@ -9,7 +9,7 @@ app.renderer.resize(window.innerWidth, window.innerHeight);
 
 //* BACKGROUND
 
-const texture = PIXI.Texture.from('./img/_1p2.jpeg');
+const texture = PIXI.Texture.from('./img/1p2.jpeg');
 
 const tilingSprite = new PIXI.TilingSprite(
     texture,
